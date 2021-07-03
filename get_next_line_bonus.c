@@ -6,7 +6,7 @@
 /*   By: dpadovan <dpadovan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 16:04:54 by dpadovan          #+#    #+#             */
-/*   Updated: 2021/07/02 22:52:41 by dpadovan         ###   ########.fr       */
+/*   Updated: 2021/07/02 23:37:21 by dpadovan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_split_line(int ret, char **save, char **line)
 	char	*tmp;
 	int		i;
 
-	if (ret < 0 || BUFFER_SIZE < 1)
+	if (ret < 0 || BUFFER_SIZE < 1 || !line)
 		return (-1);
 	else if (ret == 0 && *save == 0)
 	{
