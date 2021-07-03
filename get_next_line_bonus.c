@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpadovan <dpadovan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 16:04:54 by dpadovan          #+#    #+#             */
-/*   Updated: 2021/07/02 22:23:10 by dpadovan         ###   ########.fr       */
+/*   Updated: 2021/07/02 22:52:41 by dpadovan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int		ft_split_line(int ret, char **save, char **line);
 static void		ft_strfree(char **str);
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*save;
+	static char	*save[OPEN_MAX];
 	char		*buffer;
 	char		*tmp;
 	int			ret;
@@ -27,20 +27,20 @@ int	get_next_line(int fd, char **line)
 	while (ret > 0)
 	{
 		buffer[ret] = '\0';
-		if (!save)
-			save = ft_strdup(buffer);
+		if (!save[fd])
+			save[fd] = ft_strdup(buffer);
 		else
 		{
-			tmp = ft_strjoin(save, buffer);
-			free(save);
-			save = tmp;
+			tmp = ft_strjoin(save[fd], buffer);
+			free(save[fd]);
+			save[fd] = tmp;
 		}
-		if (ft_strchr(save, '\n'))
+		if (ft_strchr(save[fd], '\n'))
 			break ;
 		ret = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
-	return (ft_split_line(ret, &save, line));
+	return (ft_split_line(ret, &save[fd], line));
 }
 
 static int	ft_split_line(int ret, char **save, char **line)
