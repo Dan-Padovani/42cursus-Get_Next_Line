@@ -6,7 +6,7 @@
 /*   By: dpadovan <dpadovan@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 16:06:01 by dpadovan          #+#    #+#             */
-/*   Updated: 2021/07/02 22:36:13 by dpadovan         ###   ########.fr       */
+/*   Updated: 2021/07/02 22:59:04 by dpadovan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-
 
 size_t			ft_strlen(const char *s);
 char			*ft_substr(const char *s, unsigned int start, size_t len);
